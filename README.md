@@ -1,1 +1,2 @@
-Plugin SNMP pour jeedom
+plugins jeedom pour recuperer les information SNMP
+.
