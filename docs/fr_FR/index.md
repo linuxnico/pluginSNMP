@@ -5,8 +5,10 @@ Description
 Plugin SNMP
 
 
-Nécessite l’installation de la librairie php-snmp 
+Need php-snmp install (auto install with plugin)
 
+1) enter IP of equipment
+2) create command with name, type and OID
 
 
 
