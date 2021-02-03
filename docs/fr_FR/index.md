@@ -15,4 +15,4 @@ le plugin a besoin de php-snmp install (auto install avce le plugin)
 
 Voila!
 
-![capture](https://github.com/linuxnico/pluginSNMP/blob/master/docs/fr_FR/Capture.JPG)
+![capture](https://linuxnico.github.io/pluginSNMP/fr_FR/Capture.JPG)
