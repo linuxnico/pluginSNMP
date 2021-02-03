@@ -5,12 +5,12 @@ Description
 Plugin SNMP
 
 
-Need php-snmp install (auto install with plugin)
+le plugin a besoin de php-snmp install (auto install avce le plugin)
 
-1) enter IP of equipment
-2) check Test Ping if you want to test online 
-2) create command with name, type and OID
+1) renseigner l'IP de l'equipement
+2) cocher "test ping" si vous voulez une info de presence reseau
+3) dans les commandes, creer une commande, et rensiegner le nom, le type et l'OID de la valeur voulue
 
-
+Voila!
 
 ![capture](https://github.com/linuxnico/pluginSNMP/blob/master/docs/fr_FR/Capture.JPG)
