@@ -71,18 +71,18 @@ class snmp_client extends eqLogic {
     /*     * *********************Méthodes d'instance************************* */
 
     //fonction de recuperation d'un oid numerique
-    public function recupNumerique($oid) {
+    public function recupNumerique($oid, $communaute) {
       $ip = $this->getConfiguration("ip");
-      $val = snmpget($ip, "public", $oid);
-      // log::add('snmp_client', 'debug',"recupnumerique: oid: -".$oid."- et ip: -".$ip."- et resultat: -".$val."-");
+      $val = snmpget($ip, $communaute, $oid);
+      log::add('snmp_client', 'debug',"recupnumerique: oid: -".$oid."- et ip: -".$ip."- et resultat: -".$val."-");
       $val = substr($val, strpos($val, ':')+2);
       return $val;
     }
     //fonction de recuperation d'un oid binaire
-    public function recupBinaire($oid) {
+    public function recupBinaire($oid, $communaute) {
       $ip = $this->getConfiguration("ip");
-      $val = snmpget($ip, "public", $oid);
-      // log::add('snmp_client', 'debug',"recupbinaire: oid: -".$oid."- et ip: -".$ip."- et resultat: -".$val."-");
+      $val = snmpget($ip, $communaute, $oid);
+      log::add('snmp_client', 'debug',"recupbinaire: oid: -".$oid."- et ip: -".$ip."- et resultat: -".$val."-");
       $val = substr($val, strpos($val, ':')+1);
       //   log::add('snmp_client', 'debug',"inversion".$this->getConfiguration('invertBinary'));
       // if ($this->getConfiguration('invertBinary')==1) {
@@ -90,7 +90,7 @@ class snmp_client extends eqLogic {
       // }
       return $val;
     }
-    //fonction de vrification de la presence de l'equipement sur le reseau
+    //fonction de verification de la presence de l'equipement sur le reseau
     public function ping() {
       log::add('snmp_client', 'debug', "ping");
       $ip = $this->getConfiguration("ip");
@@ -218,20 +218,20 @@ class snmp_clientCmd extends cmd {
         $eqlogic = $this->getEqLogic(); //récupère l'éqlogic (l'equipement) de la commande $this
         // log::add('snmp_client', 'debug', "on refresh une commande numerique -".$this->getConfiguration('oiid').'-');
         // return;
-		    switch ($this->getLogicalId()) {	//vérifie le logicalid de la commande
-			       case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe  .
+	switch ($this->getLogicalId()) {	//vérifie le logicalid de la commande
+	case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe  .
                foreach ( $eqlogic->getCmd('info') as $commande) {
                  log::add('snmp_client', 'debug', "on refresh une commande numero: ".$commande->getId()." de type: ".$commande->getSubType()." avec oid: ".$commande->getConfiguration('oid').'-'.count($eqlogic->getCmd('info')));
                    // log::add('snmp_client', 'debug', "on passe par le refresh de : ".$commande->getHumanName()."avec oid: -".$commande->getConfiguration('oid')."-");
                    $res='';
                    if ($commande->getSubType()=='numeric') {
-                         $res = $eqlogic->recupNumerique($commande->getConfiguration('oid'));
+                         $res = $eqlogic->recupNumerique($commande->getConfiguration('oid'), $commande->getConfiguration('communaute'));
                          // log::add('snmp_client', 'debug', "valeur: -".$commande->getValue()."- -".$res."-");
   				               $maj = $eqlogic->checkAndUpdateCmd($commande, $res); // on met à jour la commande
                          // log::add('snmp_client', 'debug', "valeur: -".$commande->getValue().'-');
                          // log::add('snmp_client', 'debug', "on refresh une commande numerique -".$commande->getHumanName().'- avec comme resultat: -'.$res."-".$maj);
                    } else {
-                          $res = $eqlogic->recupBinaire($commande->getConfiguration('oid'));
+                          $res = $eqlogic->recupBinaire($commande->getConfiguration('oid'), $commande->getConfiguration('communaute'));
                          $maj = $eqlogic->checkAndUpdateCmd($commande, $res); // on met à jour la commande
                          // log::add('snmp_client', 'debug', "on refresh une commande binaire -".$commande->getHumanName().'- avec comme resultat: -'.$res."-".$maj);
                    }

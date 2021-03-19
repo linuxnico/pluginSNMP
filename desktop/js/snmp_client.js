@@ -52,7 +52,12 @@ if (_cmd.name!='Rafraichir') {
       tr += '<td>';
       tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration"  data-l2key="oid" style="width : 200px;" placeholder="{{OID}}" title="{{OID}}" >';
       tr += '</td>';
+//communaute
+      tr += '<td>';
+      tr += '<input class="cmdAttr form-control input-sm" value="public" data-l1key="configuration"  data-l2key="communaute" style="width : 200px;" placeholder="{{COMMUNAUTE}}" title="{{COMMUNAUTE}}" >';
+      tr += '</td>';
     } else { tr += '<td></td>'; }
+
 // config unite, max et min
     tr += '<td>';
     tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite"  style="width : 100px;" placeholder="{{Unité}}" title="{{Unité}}" >';
