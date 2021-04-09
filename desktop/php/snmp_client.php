@@ -135,5 +135,5 @@ foreach (jeeObject::all() as $object) {
 </div>
 </div>
 
-<?php include_file('desktop', snmp_client, 'js', snmp_client);?>
+<?php include_file('desktop', snmp_client, 'js', 'snmp_client');?>
 <?php include_file('core', 'plugin.template', 'js');?>
