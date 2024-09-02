@@ -16,5 +16,5 @@
 		"video" : "https://linuxnico.github.io/pluginSNMP/#language#/"
 	},
 	"language" : ["fr_FR"],
-	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile"]
+	"compatibility" : ["miniplus","smart","rpi","docker","diy","mobile", "jeedom v4"]
 }
